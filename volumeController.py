@@ -1,6 +1,7 @@
 import cv2
 import time
 import numpy as np
+import math
 
 import handTrackingModule as htm
 
@@ -32,6 +33,13 @@ while True:
 
         cv2.line(img, (x1,y1), (x2,y2), (255,0,255), 3)
         cv2.circle(img, (cx,cy), 15, (255,0,255),cv2.FILLED)
+
+        length = math.hypot(x2-x1,y2-y1)
+        #print(length)
+
+        #may be changed according to the hand size
+        if length<50:
+            cv2.circle(img, (cx,cy), 15, (0,255,0),cv2.FILLED)
 
 
 
