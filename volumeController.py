@@ -26,7 +26,7 @@ volume = cast(interface, POINTER(IAudioEndpointVolume))
 # volume.GetMute()
 # volume.GetMasterVolumeLevel()
 volRange = volume.GetVolumeRange()
-volume.SetMasterVolumeLevel(0, None)
+# volume.SetMasterVolumeLevel(0, None)
 
 minVol = volRange[0]
 maxVol  =volRange[1]
@@ -54,6 +54,14 @@ while True:
 
         length = math.hypot(x2-x1,y2-y1)
         #print(length)
+
+        #hand range 50 to 300
+        #volume range -65 to 0
+        vol = np.interp(length, [50,300], [minVol,maxVol])
+        print(vol)
+        volume.SetMasterVolumeLevel(vol, None)
+
+
 
         #may be changed according to the hand size
         if length<50:
